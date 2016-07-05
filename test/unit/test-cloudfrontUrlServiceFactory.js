@@ -32,6 +32,16 @@ describe('CloudfrontUrlServiceFactory', function() {
                 {host: 'www.anothersite.com', path: '/yet/another/path'}
             ])
         });
+
+        it('Should create an instance of CloudfrontUrlService with a single origin with localhost and port', function() {
+            const nodeConfig = getNodeConfig('config-3');
+
+            const cloudfrontUrlService = CloudfrontUrlServiceFactory.createFromNodeConfig(nodeConfig, 'localhostOrigin');
+            Should.exist(cloudfrontUrlService);
+            cloudfrontUrlService._cloudfrontDomainName.should.eql('blahblah.cloudfront.net');
+            cloudfrontUrlService._enabled.should.be.True();
+            cloudfrontUrlService._origins.should.deepEqual([{host: 'localhost', port: 3000, path: '/localstorage/my-bucket/public'}])
+        });
         
     });
     

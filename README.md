@@ -21,6 +21,10 @@ Include a config section that adheres to the following (assuming JSON format):
       },{
         "host": "www.mysite.com",
         "path": "my/crazy/path"
+      },{
+        "host": "localhost",
+        "port": 3000,
+        "path": "localstorage/bucket/public"
       }]
     }
 }
@@ -47,6 +51,10 @@ const cfUrlService = CfUrlServiceFactory.create({
     },{
         host: 'www.mysite.com',
         path: 'my/crazy/path'
+    },{
+        host: 'localhost',
+        port: 3000,
+        path: 'localstorage/bucket/public'
     }]
 });
 ```
@@ -62,8 +70,12 @@ const cfUrl = cfUrlService.convertUrl(originUrl);
 // http://somedomain.cloudfront.net/images/image.jpg
 
 const originUrl2 = 'https://www.mysite.com/my/crazy/path/something.txt';
-const cfUrl2 = cfUrlService.convertUrl(originUrl);
+const cfUrl2 = cfUrlService.convertUrl(originUrl2);
 // https://somedomain.cloudfront.net/something.txt
+
+const originUrl3 = 'http://localhost:3000/localstorage/bucket/public/images/thumb.jpg'
+const cfUrl3 = cfUrlService.convertUrl(originUrl3);
+// http://somedomain.cloudfront.net/images/thumb.jpg
 ```
 
 If the provided URL does not match an origin, the provided URL is simply returned:
@@ -74,4 +86,5 @@ const cfUrl = cfUrlService.convertUrl(originUrl);
 // 'http://www.someothersite.com/does/not/match/an/origin.jpg'
 ```
 
-When ```enabled=false```, convertUrl always returns the original URL.
+When ```enabled=false```, ```convertUrl``` always returns the original URL though you can override
+that behavior by passing in a second parameter of ```true```.

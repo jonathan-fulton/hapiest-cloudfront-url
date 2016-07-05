@@ -62,6 +62,19 @@ describe('CloudfrontUrlService', function() {
             convertedUrl.should.eql('https://dafjlsavc13asd.cloudfront.net/hello-world/index.js');
         });
 
+        it('Should correctly map a URL from a single origin with a port specified to a Cloudfront URL', function() {
+            const cfUrlService = CloudfrontUrlServiceFactory.create({
+                cloudfrontDomainName: 'dafjlsavc13asd.cloudfront.net',
+                enabled: true,
+                origins: [{host: 'localhost', port: 3000, path: 'localstorage/bucket/public'}]
+            });
+
+            const originalUrl = 'http://localhost:3000/localstorage/bucket/public/images/thumbnail.jpg';
+            const convertedUrl = cfUrlService.convertUrl(originalUrl);
+
+            convertedUrl.should.eql('http://dafjlsavc13asd.cloudfront.net/images/thumbnail.jpg');
+        });
+
     });
 
 });

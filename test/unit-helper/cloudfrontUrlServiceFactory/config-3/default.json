@@ -1,0 +1,11 @@
+{
+  "localhostOrigin": {
+    "cloudfrontDomainName": "blahblah.cloudfront.net",
+    "enabled": true,
+    "origins": [{
+      "host": "localhost",
+      "port": 3000,
+      "path": "/localstorage/my-bucket/public"
+    }]
+  }
+}
