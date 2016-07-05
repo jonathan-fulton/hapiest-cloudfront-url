@@ -1,0 +1,16 @@
+{
+  "threeOrigins": {
+    "cloudfrontDomainName": "blahblah.cloudfront.net",
+    "enabled": false,
+    "origins": [{
+      "host": "my-bucket.s3.amazonaws.com",
+      "path": "/public"
+    },{
+      "host": "www.mysite.com",
+      "path": "/videos/some-category"
+    },{
+      "host": "www.anothersite.com",
+      "path": "yet/another/path"
+    }]
+  }
+}

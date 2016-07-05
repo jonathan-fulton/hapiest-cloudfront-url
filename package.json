@@ -1,0 +1,33 @@
+{
+  "name": "hapiest-cloudfront-url",
+  "version": "0.0.1",
+  "description": "Maps origin URLs to an AWS Cloudfront distribution URL",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha test/unit --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathan-fulton/hapiest-cloudfront-url.git"
+  },
+  "keywords": [
+    "Hapiest",
+    "AWS",
+    "Cloudfront",
+    "URL"
+  ],
+  "author": "Jonathan Fulton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonathan-fulton/hapiest-cloudfront-url/issues"
+  },
+  "homepage": "https://github.com/jonathan-fulton/hapiest-cloudfront-url#readme",
+  "devDependencies": {
+    "config-uncached": "1.0.2",
+    "mocha": "2.5.3",
+    "should": "9.0.2"
+  },
+  "dependencies": {
+    "joi": "8.4.2"
+  }
+}

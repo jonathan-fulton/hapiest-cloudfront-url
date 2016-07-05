@@ -1,0 +1,10 @@
+{
+  "myCloudfrontDistribution": {
+    "cloudfrontDomainName": "asdfweqvassasdf.cloudfront.net",
+    "enabled": true,
+    "origins": [{
+      "host": "my-bucket.s3.amazonaws.com",
+      "path": "/public"
+    }]
+  }
+}
