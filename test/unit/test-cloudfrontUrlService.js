@@ -95,6 +95,22 @@ describe('CloudfrontUrlService', function() {
             isDistributionUrl_false.should.be.False();
         });
 
+        it('Should return true when the url matches distribution and false when it does not even for distributions with paths in the domain name', function() {
+            const cfUrlService = CloudfrontUrlServiceFactory.create({
+                cloudfrontDomainName: 'localhost:3000/localstorage/public/images',
+                enabled: true,
+                origins: [{host: 'localhost', port: 3000, path: 'localstorage/bucket/public'}]
+            });
+
+            const urlToCheck_true = 'http://localhost:3000/localstorage/public/images/folder/thumbnail.jpg';
+            const isDistributionUrl_true = cfUrlService.isDistributionUrl(urlToCheck_true);
+            isDistributionUrl_true.should.be.True();
+
+            const urlToCheck_false = 'http://localhost:3000/localstorage/thumbnail.jpg';
+            const isDistributionUrl_false = cfUrlService.isDistributionUrl(urlToCheck_false);
+            isDistributionUrl_false.should.be.False();
+        });
+
     });
 
     describe('matchesDistributionOrigins', function() {
