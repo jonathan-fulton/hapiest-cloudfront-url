@@ -1,6 +1,6 @@
 {
   "name": "hapiest-cloudfront-url",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Maps origin URLs to an AWS Cloudfront distribution URL",
   "main": "index.js",
   "scripts": {

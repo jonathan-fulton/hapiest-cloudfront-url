@@ -77,4 +77,52 @@ describe('CloudfrontUrlService', function() {
 
     });
 
+    describe('isDistributionUrl', function() {
+
+        it('Should return true when the url matches distribution and false when it does not', function() {
+            const cfUrlService = CloudfrontUrlServiceFactory.create({
+                cloudfrontDomainName: 'dafjlsavc13asd.cloudfront.net',
+                enabled: true,
+                origins: [{host: 'localhost', port: 3000, path: 'localstorage/bucket/public'}]
+            });
+
+            const urlToCheck_true = 'http://dafjlsavc13asd.cloudfront.net/images/folder/thumbnail.jpg';
+            const isDistributionUrl_true = cfUrlService.isDistributionUrl(urlToCheck_true);
+            isDistributionUrl_true.should.be.True();
+
+            const urlToCheck_false = 'http://vizual.ai/images/folder/thumbnail.jpg';
+            const isDistributionUrl_false = cfUrlService.isDistributionUrl(urlToCheck_false);
+            isDistributionUrl_false.should.be.False();
+        });
+
+    });
+
+    describe('matchesDistributionOrigins', function() {
+
+        it('Should return true when the url matches an origin and false when it does not', function() {
+            const cfUrlService = CloudfrontUrlServiceFactory.create({
+                cloudfrontDomainName: 'dafjlsavc13asd.cloudfront.net',
+                enabled: true,
+                origins: [
+                    {host: 'localhost', port: 3000, path: '/localstorage/bucket/public'},
+                    {host: 'static.digg.com', path: '/'},
+                ]
+            });
+
+            const localhost_url_true = 'http://localhost:3000/localstorage/bucket/public/images/somethumbnail.jpg';
+            const isOriginUrl_localhost_true = cfUrlService.isOriginUrl(localhost_url_true);
+            isOriginUrl_localhost_true.should.be.True();
+
+            const digg_url_true = 'http://static.digg.com/somethumbnail.jpg';
+            const isOriginUrl_digg_true = cfUrlService.isOriginUrl(digg_url_true);
+            isOriginUrl_digg_true.should.be.True();
+
+            const vizualai_url_false = 'http://vizual.ai/images/nomatch/thumbnail.jpg';
+            const isOriginUrl_vizualai_true = cfUrlService.isOriginUrl(vizualai_url_false);
+            isOriginUrl_vizualai_true.should.be.False();
+
+        });
+
+    });
+
 });
