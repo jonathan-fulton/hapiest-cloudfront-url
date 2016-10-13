@@ -4,6 +4,22 @@ const Should = require('should');
 const CloudfrontUrlServiceFactory = require('../../lib/cloudfrontUrlServiceFactory');
 
 describe('CloudfrontUrlService', function() {
+    
+    describe('getCloudfrontDomainName', function() {
+       
+        it('Should return the Cloudfront domain name', function() {
+            const cfUrlService = CloudfrontUrlServiceFactory.create({
+                cloudfrontDomainName: 'dafjlsavc13asd.cloudfront.net',
+                enabled: true,
+                origins: [{host: 'my-bucket.s3.amazonaws.com', path: 'public'}]
+            });
+
+            const cfDomainName = cfUrlService.getCloudfrontDomainName();
+
+            cfDomainName.should.eql('dafjlsavc13asd.cloudfront.net');
+        });
+        
+    });
 
     describe('convertUrl', function() {
 
